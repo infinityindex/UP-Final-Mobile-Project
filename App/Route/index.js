@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../Container/HomeScreen'
 import AboutScreen from '../Container/AboutScreen'
 import CustomDrawer from './Drawer'
+import NewsDetailScreen from '../Container/NewsDetailScreen'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -15,6 +16,7 @@ function Root() {
   return (
     <Stack.Navigator headerMode='none'>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="NewsDetailScreen" component={NewsDetailScreen} />
     </Stack.Navigator>
   );
 }

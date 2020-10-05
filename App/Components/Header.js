@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, SafeAreaView, Alert } from 'react-native'
 import { Icon } from 'native-base'
 import { useNavigation } from '@react-navigation/native';
-
+import {Images} from '../Theme'
 const Headers = () => {
     // Declare a new state variable, which we'll call "count"
 
