@@ -4,17 +4,16 @@ import Header from '../Components/Header';
 import axios from 'axios';
 import {Content, CardItem, Left, Thumbnail, Body, Subtitle} from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-
+import API from '../Service/API'
 
 const HomeScreen = () => {
   const [data, setData] = useState();
   const [isFetch, setIsFetch] = useState(false);
   const navigation = useNavigation();
 
-
   useEffect(() => {
     axios
-      .get('https://fakestoreapi.com/products')
+      .get(API.product_list)
       .then((temp) => {
         const tmpdata = temp.data;
         setData(tmpdata);
@@ -54,7 +53,7 @@ const HomeScreen = () => {
             keyExtractor={(item) => item.key}
           />
         ) : (
-          <Text>no data</Text>
+          <Text style={{textAlign: 'center'}}>no data</Text>
         )}
       </View>
     </SafeAreaView>
