@@ -19,10 +19,10 @@ const  AppDrawer = ({navigation}) => {
                     <Text>Technology</Text>
                 </ListItem>
                 <ListItem onPress={() => Alert.alert("Comming Soon!")}>
-                    <Text>Leadership</Text>
+                    <Text>Entertainment</Text>
                 </ListItem>
                 <ListItem onPress={() => Alert.alert("Comming Soon!")}>
-                    <Text>Politics</Text>
+                    <Text>Social</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('About')}>
                     <Text>About us</Text>
