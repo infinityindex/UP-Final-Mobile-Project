@@ -12,20 +12,30 @@ import axios from 'axios';
 import {Content, CardItem, Left, Thumbnail, Body, Subtitle} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {Images} from '../Theme';
-import { Title } from 'react-native-paper';
-
+import {Title} from 'react-native-paper';
+import API from '../Service/API';
+import {ScrollView} from 'react-native-gesture-handler';
+import WebView from 'react-native-webview';
 const NewsDetailScreen = (props) => {
   const [data, setData] = useState();
   const [isFetch, setIsFetch] = useState(false);
   const navigation = useNavigation();
   const item = props.route.params.item;
-
+  console.log('item => ', item);
   const renderImage = () => {
     return (
-      <View style={{flex: 0.4, margin: 10}}>
+      <View style={{margin: 10, alignItems: 'center'}}>
         <Image
-          source={{uri: item.image}}
-          style={{resizeMode: 'contain', width: '100%', height: '100%'}}
+          source={{
+            uri: item.article_photo_has_one
+              ? API.imageUrl + item.article_photo_has_one.path
+              : Images.logo,
+          }}
+          style={{
+            resizeMode: 'contain',
+            width: Dimensions.get('window').width,
+            height: Dimensions.get('window').height / 2.5,
+          }}
         />
       </View>
     );
@@ -33,35 +43,57 @@ const NewsDetailScreen = (props) => {
 
   const renderTitle = () => {
     return (
-        <View style={{margin: 10}}>
-            <Title>{item.title}</Title>
-            <Text>{`${item.category} / ${item.price}`}</Text>
-        </View>
-    )
-  }
+      <View style={{margin: 10}}>
+        <Title>{item.title}</Title>
+        {item.article_writer ? (
+          <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name}`}</Text>
+        ) : null}
+      </View>
+    );
+  };
   
+  const renderCredit = () => {
+    return (
+      <View style={{margin: 10}}>
+        {item.article_writer ? (
+          <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name}`}</Text>
+        ) : null}
+      </View>
+    );
+  }
+
   const renderDescription = () => {
     return (
-        <View style={{margin: 10}}>
-            <Text>{item.description}</Text>
-        </View>
-    )
-  }
+      <View style={{margin: 10}}>
+        <Text>{item.content}</Text>
+      </View>
+    );
+  };
+
+  const renderVideo = () => {
+    return (
+      <View style={{margin: 10}}>
+        <WebView
+          source={{uri: item.video_link}}
+          style={{width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height / 2.5,}}
+        />
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <Header />
-      <View style={{flex: 1, marginBottom: 10}}>
-        {
-            renderImage()
-        }
-        {
-            renderTitle()
-        }
-        {
-            renderDescription()
-        }
+      <ScrollView>
+        <View style={{flex: 1, marginBottom: 10}}>
+          {renderImage()}
+          {renderTitle()}
+          {renderDescription()}
+          {renderVideo()}
+          {renderCredit()}
         </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

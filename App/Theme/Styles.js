@@ -1,6 +1,6 @@
 const ApplicationStyles = {
     AboutUs: {
-
+        
     }
 }
 
