@@ -17,7 +17,7 @@ import API from '../Service/API';
 import {Images} from '../Theme';
 import {Title} from 'react-native-paper';
 
-const HomeScreen = (props) => {
+const Sport = () => {
   const [data, setData] = useState();
   const [isFetch, setIsFetch] = useState(false);
   const [refreshing, setRefreshing] = useState(false)
@@ -26,9 +26,9 @@ const HomeScreen = (props) => {
   useEffect(() => {
    getlist(1);
   }, []);
-  console.log('this.prosp => ', props.route)
+
   const getlist = () => {
-    axios.get(API.product_list)
+    axios.get(API.sport_list)
     .then((temp) => {
       const tmpdata = temp.data.data;
       setData(tmpdata);
@@ -44,7 +44,7 @@ const HomeScreen = (props) => {
     const pageNum = page + 1
     console.log(page)
     setPage(pageNum);
-    axios.get(API.product_list +'?page='+ pageNum)
+    axios.get(API.sport_list +'?page='+ pageNum)
       .then((temp) => {
         const tmpdata = temp.data.data;
         const allData = Array.isArray(data) == true ? data : [data];
@@ -147,4 +147,4 @@ const HomeScreen = (props) => {
   );
 };
 
-export default HomeScreen;
+export default Sport;

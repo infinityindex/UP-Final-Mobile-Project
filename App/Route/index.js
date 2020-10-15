@@ -8,6 +8,9 @@ import HomeScreen from '../Container/HomeScreen'
 import AboutScreen from '../Container/AboutScreen'
 import CustomDrawer from './Drawer'
 import NewsDetailScreen from '../Container/NewsDetailScreen'
+import SportScreen from '../Container/SportScreen'
+import TechnologyScreen from '../Container/TechnologyScreen'
+import LeadershipScreen from '../Container/LeadershipScreen'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -17,6 +20,9 @@ function Root() {
     <Stack.Navigator headerMode='none'>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="NewsDetailScreen" component={NewsDetailScreen} />
+      <Stack.Screen name="Sport" component={SportScreen} />
+      <Stack.Screen name="Technology" component={TechnologyScreen} />
+      <Stack.Screen name="Leadership" component={LeadershipScreen} />
     </Stack.Navigator>
   );
 }

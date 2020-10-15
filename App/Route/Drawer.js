@@ -9,20 +9,17 @@ const  AppDrawer = ({navigation}) => {
     return (
         <Content style={{ flex: 1 }}>
             <List style={{ flex: 1 }}>
-                <ListItem onPress={() => navigation.navigate('Home')}>
+                <ListItem onPress={() => navigation.navigate('Home',{key: 'home'})}>
                     <Text>News</Text>
                 </ListItem>
-                <ListItem onPress={() => Alert.alert("Comming Soon!")}>
+                <ListItem onPress={() => navigation.navigate('Sport',{key: 'sport'})}>
                     <Text>Sport</Text>
                 </ListItem>
-                <ListItem onPress={() => Alert.alert("Comming Soon!")}>
+                <ListItem onPress={() => navigation.navigate('Technology',{key: 'Technology'})}>
                     <Text>Technology</Text>
                 </ListItem>
-                <ListItem onPress={() => Alert.alert("Comming Soon!")}>
+                <ListItem onPress={() => navigation.navigate('Leadership',{key: 'Leadership'})}>
                     <Text>Leadership</Text>
-                </ListItem>
-                <ListItem onPress={() => Alert.alert("Comming Soon!")}>
-                    <Text>Politics</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('About')}>
                     <Text>About us</Text>
