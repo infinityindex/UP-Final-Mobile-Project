@@ -23,14 +23,13 @@ function AboutScreen() {
         </View>
         <View style={{flex: 1, marginHorizontal: 20}}>
             <Text style={{paddingVertical: 10}}>
-              Are you looking for register your company or business in Cambodia?
-              Call Us Now. We are an accounting firm that offers Accounting
-              Services & Accounting Software. Business Registration. Bookkeeping
-              Services. Accounting Software. Tax Consultant.
+            Article post is providing the news and articles within different categories (Entertainment, Sport, Technology, Social,....) and it is an app that can help the human to
+daily activities. It is very important for people's life currently, because it gains knowledge of
+everything like working, news, general knowledge, and technology.
             </Text>
-          <Text style={{paddingVertical: 5}}>#HH36, St 265, Sangkat Teok Laok III, Khan Toul Kork</Text>
-          <Text style={{paddingVertical: 5}}>sam.businesscambodia@gmail.com</Text>
-          <Text style={{paddingVertical: 5}}>(+855) 98 850 854</Text>
+          <Text style={{paddingVertical: 5}}>#5DD, St 371, Sangkat Tik Thla, Khan Sen Sok, Phnom Penh</Text>
+          <Text style={{paddingVertical: 5}}>articleposting@gmail.com</Text>
+          <Text style={{paddingVertical: 5}}>(+855) 97 46 64 594</Text>
         </View>
       </View>
     </View>
