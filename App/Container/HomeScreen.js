@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,11 +11,11 @@ import {
 } from 'react-native';
 import Header from '../Components/Header';
 import axios from 'axios';
-import {Content, CardItem, Left, Thumbnail, Body, Subtitle} from 'native-base';
-import {useNavigation} from '@react-navigation/native';
+import { Content, CardItem, Left, Thumbnail, Body, Subtitle } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import API from '../Service/API';
-import {Images} from '../Theme';
-import {Title} from 'react-native-paper';
+import { Images } from '../Theme';
+import { Title } from 'react-native-paper';
 
 const HomeScreen = (props) => {
   const [data, setData] = useState();
@@ -28,8 +28,8 @@ const HomeScreen = (props) => {
     getlist(1);
   }, []);
   console.log('this.prosp => ', props.route);
-  const getlist = () => {
-    axios
+  const getlist = async () => {
+    await axios
       .get(API.product_list)
       .then((temp) => {
         const tmpdata = temp.data.data;
@@ -62,11 +62,10 @@ const HomeScreen = (props) => {
     };
   };
 
-  const renderItem = ({item, index}) => {
-    console.log('add number ', ads);
+  const renderItem = ({ item, index }) => {
     return index == 0 ? (
       <TouchableOpacity
-        onPress={() => navigation.navigate('NewsDetailScreen', {item: item})}>
+        onPress={() => navigation.navigate('NewsDetailScreen', { item: item })}>
         <Image
           source={{
             uri: item.article_photo_has_one
@@ -79,7 +78,7 @@ const HomeScreen = (props) => {
             height: Dimensions.get('window').height / 2.6,
           }}
         />
-        <Title style={{padding: 7, fontSize: 15, lineHeight: 17}}>
+        <Title style={{ padding: 7, fontSize: 15, lineHeight: 17 }}>
           {item.title}
         </Title>
         <Subtitle
@@ -91,62 +90,60 @@ const HomeScreen = (props) => {
             paddingBottom: 10,
           }}>
           Published: {item.published_at} /{' '}
-          <Subtitle style={{color: 'gray'}}>
+          <Subtitle style={{ color: 'gray' }}>
             Views: {item.amount_viewer}
           </Subtitle>
         </Subtitle>
       </TouchableOpacity>
     ) : (
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('NewsDetailScreen', {item: item})}>
-          <CardItem
-            key={index}
-            style={{borderBottomWidth: 1, borderBottomColor: 'gray'}}>
-            <Left>
-            {
-              item.article_photo_has_one ? 
-              <Thumbnail
-                large
-                square={true}
-                source={{
-                  uri: item.article_photo_has_one
-                    ? API.imageUrl + item.article_photo_has_one.path
-                    : Images.logo,
-                }}
-              /> : null
-            }
-              <Body>
-                <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-                  {item.title}
-                </Text>
-                <Subtitle
-                  style={{color: 'gray', paddingTop: 8, paddingLeft: 5}}>
-                  Published: {item.published_at} /{' '}
-                  <Subtitle style={{color: 'gray'}}>
-                    Views: {item.amount_viewer}
-                  </Subtitle>
-                </Subtitle>
-              </Body>
-            </Left>
-          </CardItem>
-        </TouchableOpacity>
-        {(index+1) % 5 == 0 ? (
-          <View>
-            <Image source={Images.ads} />
-          </View>
-        ) : null}
-      </View>
-    );
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('NewsDetailScreen', { item: item })}>
+            <CardItem
+              key={index}
+              style={{ borderBottomWidth: 1, borderBottomColor: 'gray' }}>
+              <Left>
+                {
+                  item.article_photo_has_one ?
+                    <Thumbnail
+                      large
+                      square={true}
+                      source={{
+                        uri: item.article_photo_has_one
+                          ? API.imageUrl + item.article_photo_has_one.path
+                          : Images.logo,
+                      }}
+                    /> : null
+                }
+                <Body>
+                  <Text style={{ fontSize: 17, fontWeight: 'bold' }}>
+                    {item.title}
+                  </Text>
+                    <Subtitle style={{ color: 'gray' }}>
+                      {item.article_writer ? (
+                        <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name}`}</Text>
+                      ) : null}
+                    </Subtitle>
+                </Body>
+              </Left>
+            </CardItem>
+          </TouchableOpacity>
+          {(index + 1) % 5 == 0 ? (
+            <View>
+              <Image source={Images.ads} />
+            </View>
+          ) : null}
+        </View>
+      );
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Header />
       {isFetch == true ? (
         <FlatList
           data={data}
-          renderItem={({item, index}) => renderItem({item, index})}
+          renderItem={({ item, index }) => renderItem({ item, index })}
           keyExtractor={(item) => item.key}
           refreshControl={
             <RefreshControl
@@ -158,8 +155,8 @@ const HomeScreen = (props) => {
           onEndReached={() => loadMoreList()}
         />
       ) : (
-        <Text style={{textAlign: 'center'}}>no data</Text>
-      )}
+          <Text style={{ textAlign: 'center' }}>no data</Text>
+        )}
     </SafeAreaView>
   );
 };

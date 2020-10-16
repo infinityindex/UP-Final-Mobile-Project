@@ -12,6 +12,8 @@ import SportScreen from '../Container/SportScreen'
 import TechnologyScreen from '../Container/TechnologyScreen'
 import LeadershipScreen from '../Container/LeadershipScreen'
 import SearchScreen from '../Container/SearchScreen'
+import Entertainment from '../Container/Entertainment'
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -24,6 +26,7 @@ function Root() {
       <Stack.Screen name="Technology" component={TechnologyScreen} />
       <Stack.Screen name="Leadership" component={LeadershipScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Entertainment" component={Entertainment} />
     </Stack.Navigator>
   );
 }

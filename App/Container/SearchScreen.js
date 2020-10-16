@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import HeaderBacks from '../Components/HeaderBacks';
 import axios from 'axios';
-import {Item, Input, CardItem, Left, Body, Subtitle} from 'native-base';
+import {Item, Input, CardItem, Left, Body, Subtitle, Thumbnail} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
 import {Images} from '../Theme';
 import API from '../Service/API';
@@ -84,7 +84,7 @@ const SearchScreen = (props) => {
           regular
           style={{borderRadius: 10, backgroundColor: '#ffffff', height: 40}}>
           <Input
-            placeholder="Searh..."
+            placeholder="Search..."
             onChangeText={(t) => searchContent(t)}
           />
         </Item>

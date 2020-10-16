@@ -17,7 +17,7 @@ import API from '../Service/API';
 import { Images } from '../Theme';
 import { Title } from 'react-native-paper';
 
-const SportScreen = (props) => {
+const SocialScreen = (props) => {
   const [data, setData] = useState();
   const [isFetch, setIsFetch] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -30,7 +30,7 @@ const SportScreen = (props) => {
   console.log('this.prosp => ', props.route);
   const getlist = async () => {
     await axios
-      .get(API.sport_list)
+      .get(API.social_list)
       .then((temp) => {
         const tmpdata = temp.data.data;
         setData(tmpdata);
@@ -47,7 +47,7 @@ const SportScreen = (props) => {
     console.log(page);
     setPage(pageNum);
     axios
-      .get(API.sport_list + '?page=' + pageNum)
+      .get(API.social_list + '?page=' + pageNum)
       .then((temp) => {
         const tmpdata = temp.data.data;
         const allData = Array.isArray(data) == true ? data : [data];
@@ -161,5 +161,4 @@ const SportScreen = (props) => {
   );
 };
 
-export default SportScreen;
-
+export default SocialScreen;

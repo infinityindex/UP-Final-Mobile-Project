@@ -21,7 +21,6 @@ const NewsDetailScreen = (props) => {
   const [isFetch, setIsFetch] = useState(false);
   const navigation = useNavigation();
   const item = props.route.params.item;
-  console.log('item => ', item);
   const renderImage = () => {
     return (
       <View style={{margin: 10, alignItems: 'center'}}>
@@ -46,7 +45,7 @@ const NewsDetailScreen = (props) => {
       <View style={{margin: 10}}>
         <Title>{item.title}</Title>
         {item.article_writer ? (
-          <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name}`}</Text>
+          <Text>{`${item.published_at} / ${item.article_writer.f_name}  ${item.article_writer.l_name} / ${item.amount_viewer}`}</Text>
         ) : null}
       </View>
     );
@@ -56,7 +55,7 @@ const NewsDetailScreen = (props) => {
     return (
       <View style={{margin: 10}}>
         {item.article_writer ? (
-          <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name}`}</Text>
+          <Text>{`${item.published_at} / ${item.article_writer.f_name} ${item.article_writer.l_name} `}</Text>
         ) : null}
       </View>
     );
