@@ -7,22 +7,22 @@ import { Container, Header, Content, List, ListItem } from 'native-base';
 const  AppDrawer = ({navigation}) => {
     // const { navigation } = useNavigation();
     return (
-        <Content style={{ flex: 1 }}>
+        <Content style={{ flex: 1, backgroundColor:'red' }}>
             <List style={{ flex: 1 }}>
                 <ListItem onPress={() => navigation.navigate('Home',{key: 'home'})}>
-                    <Text>News</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>News</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('Sport',{key: 'sport'})}>
-                    <Text>Sport</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>Sport</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('Technology',{key: 'Technology'})}>
-                    <Text>Technology</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>Technology</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('Leadership',{key: 'Leadership'})}>
-                    <Text>Leadership</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>Leadership</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('About')}>
-                    <Text>About us</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>About us</Text>
                 </ListItem>
             </List>
         </Content>
