@@ -19,7 +19,7 @@ const Header = () => {
             paddingHorizontal: 10
         }}>
             <Icon onPress={() => navigation.toggleDrawer()} name="menu" type="MaterialIcons" style={{ color: '#ffffff' }} />
-            <Icon name="school" type="MaterialIcons" style={{ color: '#ffffff', fontSize: 42 }} />
+            <Icon name="article" type="MaterialIcons" style={{ color: '#ffffff', fontSize: 42 }} />
             <Icon onPress={() => navigation.push('Search')} name="search" type="MaterialIcons" style={{ color: '#ffffff' }} />
         </View>
     );

@@ -19,7 +19,7 @@ const  AppDrawer = ({navigation}) => {
                     <Text style={{ color:'white', fontWeight: 'bold' }}>Technology</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('Leadership',{key: 'Leadership'})}>
-                    <Text style={{ color:'white', fontWeight: 'bold' }}>Leadership</Text>
+                    <Text style={{ color:'white', fontWeight: 'bold' }}>Social</Text>
                 </ListItem>
                 <ListItem onPress={() => navigation.navigate('About')}>
                     <Text style={{ color:'white', fontWeight: 'bold' }}>About us</Text>
