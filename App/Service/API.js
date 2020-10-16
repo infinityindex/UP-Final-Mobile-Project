@@ -8,6 +8,7 @@ const API = {
     sport_list: baseUrl + 'v0/article/list/2/',
     technology_list: baseUrl + 'v0/article/list/3/',
     leadership_list: baseUrl + 'v0/article/list/4/',
+    search: baseUrl + 'v0/article/search/',
 }
 
 export default API;

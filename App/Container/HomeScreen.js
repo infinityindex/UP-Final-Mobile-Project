@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  RefreshControl
+  RefreshControl,
 } from 'react-native';
 import Header from '../Components/Header';
 import axios from 'axios';
@@ -20,45 +20,50 @@ import {Title} from 'react-native-paper';
 const HomeScreen = (props) => {
   const [data, setData] = useState();
   const [isFetch, setIsFetch] = useState(false);
-  const [refreshing, setRefreshing] = useState(false)
+  const [refreshing, setRefreshing] = useState(false);
   const [page, setPage] = useState(1);
+  const [ads, setAds] = useState(0);
   const navigation = useNavigation();
   useEffect(() => {
-   getlist(1);
+    getlist(1);
   }, []);
-  console.log('this.prosp => ', props.route)
+  console.log('this.prosp => ', props.route);
   const getlist = () => {
-    axios.get(API.product_list)
-    .then((temp) => {
-      const tmpdata = temp.data.data;
-      setData(tmpdata);
-      setIsFetch(true);
-      console.log('res', tmpdata);
-    })
-    .catch((err) => console.log(err));
+    axios
+      .get(API.product_list)
+      .then((temp) => {
+        const tmpdata = temp.data.data;
+        setData(tmpdata);
+        setIsFetch(true);
+        console.log('res', tmpdata);
+      })
+      .catch((err) => console.log(err));
     return () => {
       setIsFetch(true);
     };
-  }
+  };
   const loadMoreList = () => {
-    const pageNum = page + 1
-    console.log(page)
+    const pageNum = page + 1;
+    console.log(page);
     setPage(pageNum);
-    axios.get(API.product_list +'?page='+ pageNum)
+    axios
+      .get(API.product_list + '?page=' + pageNum)
       .then((temp) => {
         const tmpdata = temp.data.data;
         const allData = Array.isArray(data) == true ? data : [data];
-        const pageData =  allData.concat(tmpdata)
-        console.log("load data => ", tmpdata)
+        const pageData = allData.concat(tmpdata);
+        console.log('load data => ', tmpdata);
         setData(pageData);
         setIsFetch(true);
       })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
     return () => {
       setIsFetch(true);
     };
-  }
+  };
+
   const renderItem = ({item, index}) => {
+    console.log('add number ', ads);
     return index == 0 ? (
       <TouchableOpacity
         onPress={() => navigation.navigate('NewsDetailScreen', {item: item})}>
@@ -92,37 +97,49 @@ const HomeScreen = (props) => {
         </Subtitle>
       </TouchableOpacity>
     ) : (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('NewsDetailScreen', {item: item})}>
-        <CardItem
-          key={index}
-          style={{borderBottomWidth: 1, borderBottomColor: 'gray'}}>
-          <Left>
-            <Thumbnail
-              large
-              square={true}
-              source={{
-                uri: item.article_photo_has_one
-                  ? API.imageUrl + item.article_photo_has_one.path
-                  : Images.logo,
-              }}
-            />
-            <Body>
-              <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-                {item.title}
-              </Text>
-              <Subtitle style={{color: 'gray', paddingTop: 8, paddingLeft: 5}}>
-                Published: {item.published_at} /{' '}
-                <Subtitle style={{color: 'gray'}}>
-                  Views: {item.amount_viewer}
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('NewsDetailScreen', {item: item})}>
+          <CardItem
+            key={index}
+            style={{borderBottomWidth: 1, borderBottomColor: 'gray'}}>
+            <Left>
+            {
+              item.article_photo_has_one ? 
+              <Thumbnail
+                large
+                square={true}
+                source={{
+                  uri: item.article_photo_has_one
+                    ? API.imageUrl + item.article_photo_has_one.path
+                    : Images.logo,
+                }}
+              /> : null
+            }
+              <Body>
+                <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+                  {item.title}
+                </Text>
+                <Subtitle
+                  style={{color: 'gray', paddingTop: 8, paddingLeft: 5}}>
+                  Published: {item.published_at} /{' '}
+                  <Subtitle style={{color: 'gray'}}>
+                    Views: {item.amount_viewer}
+                  </Subtitle>
                 </Subtitle>
-              </Subtitle>
-            </Body>
-          </Left>
-        </CardItem>
-      </TouchableOpacity>
+              </Body>
+            </Left>
+          </CardItem>
+        </TouchableOpacity>
+        {(index+1) % 5 == 0 ? (
+          <View>
+            <Image source={Images.ads} />
+          </View>
+        ) : null}
+      </View>
     );
   };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <Header />

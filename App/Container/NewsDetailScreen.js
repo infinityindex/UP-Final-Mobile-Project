@@ -87,7 +87,7 @@ const NewsDetailScreen = (props) => {
       <HeadersBack item={item} />
       <ScrollView>
         <View style={{flex: 1, marginBottom: 10}}>
-          {renderImage()}
+          {item.article_photo_has_one ? renderImage() : null}
           {renderTitle()}
           {renderDescription()}
           {renderVideo()}
