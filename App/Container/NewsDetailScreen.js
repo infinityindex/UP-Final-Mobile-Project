@@ -7,7 +7,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import Header from '../Components/Header';
+import HeadersBack from '../Components/HeaderBack';
 import axios from 'axios';
 import {Content, CardItem, Left, Thumbnail, Body, Subtitle} from 'native-base';
 import {useNavigation} from '@react-navigation/native';
@@ -84,7 +84,7 @@ const NewsDetailScreen = (props) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Header />
+      <HeadersBack item={item} />
       <ScrollView>
         <View style={{flex: 1, marginBottom: 10}}>
           {renderImage()}
